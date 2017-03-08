@@ -1,0 +1,5 @@
+rootProject.name = 'Example'
+include ':react-native-tabbed-view-pager-android'
+project(':react-native-tabbed-view-pager-android').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tabbed-view-pager-android/android')
+
+include ':app'
