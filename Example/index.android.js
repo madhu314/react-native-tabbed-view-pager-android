@@ -25,9 +25,12 @@ export default class Example extends Component {
           tabTextColor={"yellow"}
           tabSelectedTextColor={"white"}
           tabElevation={4}
-          tabNames={["First", "Second", "Third", "Fourth", "Fifth"]}
+          tabNames={["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth"]}
           style={styles.viewPager}
-          initialPage={0}>
+          initialPage={0}
+          onPageSelected={(event) => this.onPageSelected(event.nativeEvent.position)}
+          onPageScrollStateChanged={(state) => this.onPageScrollStateChanged(state)}
+          onPageScroll={(event) => this.onPageScroll(event.nativeEvent)}>
           <View style={styles.pageStyle}>
             <Text>First page</Text>
           </View>
@@ -43,9 +46,30 @@ export default class Example extends Component {
           <View style={styles.pageStyle}>
             <Text>Fifth page</Text>
           </View>
+          <View style={styles.pageStyle}>
+            <Text>Sixth page</Text>
+          </View>
+          <View style={styles.pageStyle}>
+            <Text>Seventh page</Text>
+          </View>
+          <View style={styles.pageStyle}>
+            <Text>Eigth page</Text>
+          </View>
         </TabbedViewPager>
       </View>
     );
+  }
+
+  onPageSelected(position) {
+    console.log("Page position is:" + position)
+  }
+
+  onPageScroll(event) {
+   console.log("Page scroll event:" + JSON.stringify(event)) 
+  }
+
+  onPageScrollStateChanged(state) {
+   console.log("Page scroll state change event:" + state)  
   }
 }
 

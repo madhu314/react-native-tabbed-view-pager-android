@@ -19,7 +19,17 @@ import java.util.List;
 //Source: react-native/ReactAndroid/src/main/java/com/facebook/react/views/viewpager/ReactViewPager.java
 public class ReactViewPager extends ViewPager {
 
+  interface ParentIdCallback {
+    int getParentId();
+  }
+
   private String[] pageNames;
+
+  private ParentIdCallback parentIdCallback;
+
+  public void setParentIdCallback(ParentIdCallback parentIdCallback) {
+    this.parentIdCallback = parentIdCallback;
+  }
 
   public void setPageNames(String[] names) {
     this.pageNames = names;
@@ -119,12 +129,12 @@ public class ReactViewPager extends ViewPager {
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-      mEventDispatcher.dispatchEvent(new PageScrollEvent(getId(), position, positionOffset));
+      mEventDispatcher.dispatchEvent(new PageScrollEvent(parentIdCallback.getParentId(), position, positionOffset));
     }
 
     @Override public void onPageSelected(int position) {
       if (!mIsCurrentItemFromJs) {
-        mEventDispatcher.dispatchEvent(new PageSelectedEvent(getId(), position));
+        mEventDispatcher.dispatchEvent(new PageSelectedEvent(parentIdCallback.getParentId(), position));
       }
     }
 
@@ -143,7 +153,7 @@ public class ReactViewPager extends ViewPager {
         default:
           throw new IllegalStateException("Unsupported pageScrollState");
       }
-      mEventDispatcher.dispatchEvent(new PageScrollStateChangedEvent(getId(), pageScrollState));
+      mEventDispatcher.dispatchEvent(new PageScrollStateChangedEvent(parentIdCallback.getParentId(), pageScrollState));
     }
   }
 
