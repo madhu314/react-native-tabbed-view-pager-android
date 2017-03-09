@@ -76,6 +76,11 @@ import javax.annotation.Nullable;
     viewPager.setTabIndicatorHeight(PixelUtil.toPixelFromDIP(tabIndicatorHeight));
   }
 
+  @ReactProp(name = "tabElevation")
+  public void setTabElevation(TabbedViewPager viewPager, float tabElevation) {
+    viewPager.setTabElevation(PixelUtil.toPixelFromDIP(tabElevation));
+  }
+
   @ReactProp(name = "tabNames")
   public void setTabNames(TabbedViewPager viewPager, ReadableArray readableArray) {
     String[] names = new String[readableArray.size()];

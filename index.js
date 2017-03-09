@@ -139,6 +139,7 @@ class TabbedViewPager extends React.Component {
     tabTextColor: ColorPropType,
     tabSelectedTextColor: ColorPropType,
     tabIndicatorHeight: ReactPropTypes.number,
+    tabElevation: ReactPropTypes.number,
     tabNames: ReactPropTypes.array.isRequired
   };
 
@@ -248,5 +249,5 @@ class TabbedViewPager extends React.Component {
 }
 
 var NativeTabbedViewPager = requireNativeComponent('TabbedViewPager', TabbedViewPager);
-
-module.exports = TabbedViewPager;
+var TabbedViewPagerAndroid = TabbedViewPager;
+module.exports = TabbedViewPagerAndroid;

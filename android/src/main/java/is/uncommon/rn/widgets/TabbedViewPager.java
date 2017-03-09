@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,5 +127,9 @@ public class TabbedViewPager extends LinearLayout {
 
   public void setTabNames(String[] names) {
     reactViewPager.setPageNames(names);
+  }
+
+  public void setTabElevation(float elevation) {
+    ViewCompat.setElevation(tabLayout, elevation);
   }
 }

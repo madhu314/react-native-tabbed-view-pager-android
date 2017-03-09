@@ -24,6 +24,7 @@ export default class Example extends Component {
           tabIndicatorHeight={4}
           tabTextColor={"yellow"}
           tabSelectedTextColor={"white"}
+          tabElevation={4}
           tabNames={["First", "Second", "Third", "Fourth", "Fifth"]}
           style={styles.viewPager}
           initialPage={0}>
