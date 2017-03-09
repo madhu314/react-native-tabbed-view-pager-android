@@ -4,7 +4,9 @@ import {
   View,
   dismissKeyboard,
   requireNativeComponent,
-  findNodeHandle
+  findNodeHandle,
+  ColorPropType,
+  processColor
 } from 'react-native';
 
 var ReactPropTypes = React.PropTypes;
@@ -126,6 +128,18 @@ class TabbedViewPager extends React.Component {
     * The default value is true.
     */
     scrollEnabled: ReactPropTypes.bool,
+
+    /**
+    * Tab properties
+    */
+    tabGravity: ReactPropTypes.oneOf(['fill', 'center']),
+    tabMode: ReactPropTypes.oneOf(['fixed', 'scrollable']),
+    tabBackground: ColorPropType,
+    tabIndicatorColor: ColorPropType,
+    tabTextColor: ColorPropType,
+    tabSelectedTextColor: ColorPropType,
+    tabIndicatorHeight: ReactPropTypes.number,
+    tabNames: ReactPropTypes.array.isRequired
   };
 
   componentDidMount() {
@@ -223,6 +237,10 @@ class TabbedViewPager extends React.Component {
         onPageScroll={this._onPageScroll}
         onPageScrollStateChanged={this._onPageScrollStateChanged}
         onPageSelected={this._onPageSelected}
+        tabTextColor={processColor(this.props.tabTextColor)}
+        tabBackground={processColor(this.props.tabBackground)}
+        tabSelectedTextColor={processColor(this.props.tabSelectedTextColor)}
+        tabIndicatorColor={processColor(this.props.tabIndicatorColor)}
         children={this._childrenWithOverridenStyle()}
       />
     );

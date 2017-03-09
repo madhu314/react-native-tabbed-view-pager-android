@@ -19,6 +19,12 @@ import java.util.List;
 //Source: react-native/ReactAndroid/src/main/java/com/facebook/react/views/viewpager/ReactViewPager.java
 public class ReactViewPager extends ViewPager {
 
+  private String[] pageNames;
+
+  public void setPageNames(String[] names) {
+    this.pageNames = names;
+  }
+
   private class Adapter extends PagerAdapter {
 
     private final List<View> mViews = new ArrayList<>();
@@ -99,6 +105,13 @@ public class ReactViewPager extends ViewPager {
 
     @Override public boolean isViewFromObject(View view, Object object) {
       return view == object;
+    }
+
+    @Override public CharSequence getPageTitle(int position) {
+      if (pageNames.length > position) {
+        return pageNames[position];
+      }
+      return "Position: " + position;
     }
   }
 

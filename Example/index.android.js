@@ -17,6 +17,14 @@ export default class Example extends Component {
     return (
       <View style={styles.container}>
         <TabbedViewPager
+          tabMode={"scrollable"}
+          tabGravity={"center"}
+          tabBackground={"red"}
+          tabIndicatorColor={"blue"}
+          tabIndicatorHeight={4}
+          tabTextColor={"yellow"}
+          tabSelectedTextColor={"white"}
+          tabNames={["First", "Second", "Third", "Fourth", "Fifth"]}
           style={styles.viewPager}
           initialPage={0}>
           <View style={styles.pageStyle}>
@@ -24,6 +32,15 @@ export default class Example extends Component {
           </View>
           <View style={styles.pageStyle}>
             <Text>Second page</Text>
+          </View>
+          <View style={styles.pageStyle}>
+            <Text>Third Page</Text>
+          </View>
+          <View style={styles.pageStyle}>
+            <Text>Fourth page</Text>
+          </View>
+          <View style={styles.pageStyle}>
+            <Text>Fifth page</Text>
           </View>
         </TabbedViewPager>
       </View>
@@ -38,6 +55,7 @@ const styles = StyleSheet.create({
   pageStyle: {
     alignItems: 'center',
     padding: 20,
+    justifyContent: 'center'
   },
   viewPager: {
     flex: 1,

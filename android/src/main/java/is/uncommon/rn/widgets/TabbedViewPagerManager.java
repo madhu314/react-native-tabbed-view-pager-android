@@ -2,7 +2,6 @@ package is.uncommon.rn.widgets;
 
 import android.view.View;
 import com.facebook.infer.annotation.Assertions;
-import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.module.annotations.ReactModule;
@@ -40,6 +39,53 @@ import javax.annotation.Nullable;
     super.onDropViewInstance(view);
     view.handleViewDropped();
   }
+
+  //tab properties -- start
+  @ReactProp(name = "tabMode") public void setTabProperties(TabbedViewPager viewPager,
+      String tabMode) {
+    viewPager.setTabMode(tabMode);
+  }
+
+  @ReactProp(name = "tabGravity")
+  public void setTabGravity(TabbedViewPager viewPager, String tabGravity) {
+    viewPager.setTabGravity(tabGravity);
+  }
+
+  @ReactProp(name = "tabBackground")
+  public void setTabBackground(TabbedViewPager viewPager, int tabBackgroundColor) {
+    viewPager.setTabBackgroundColor(tabBackgroundColor);
+  }
+
+  @ReactProp(name = "tabIndicatorColor")
+  public void setTabIndicatorColor(TabbedViewPager viewPager, int tabIndicatorColor) {
+    viewPager.setTabIndicatorColor(tabIndicatorColor);
+  }
+
+  @ReactProp(name = "tabSelectedTextColor")
+  public void setTabSelectedTextColor(TabbedViewPager viewPager, int tabSelectedTextColor) {
+    viewPager.setTabSelectedTextColor(tabSelectedTextColor);
+  }
+
+  @ReactProp(name = "tabTextColor")
+  public void setTabTextColor(TabbedViewPager viewPager, int tabTextColor) {
+    viewPager.setTabTextColor(tabTextColor);
+  }
+
+  @ReactProp(name = "tabIndicatorHeight")
+  public void setTabIndicatorHeight(TabbedViewPager viewPager, float tabIndicatorHeight) {
+    viewPager.setTabIndicatorHeight(PixelUtil.toPixelFromDIP(tabIndicatorHeight));
+  }
+
+  @ReactProp(name = "tabNames")
+  public void setTabNames(TabbedViewPager viewPager, ReadableArray readableArray) {
+    String[] names = new String[readableArray.size()];
+    for (int i = 0; i < readableArray.size(); i++) {
+      names[i] = readableArray.getString(i);
+    }
+    viewPager.setTabNames(names);
+  }
+
+  //tab properties -- end
 
   @ReactProp(name = "scrollEnabled", defaultBoolean = true)
   public void setScrollEnabled(TabbedViewPager viewPager, boolean value) {
