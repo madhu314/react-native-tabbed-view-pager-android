@@ -9,52 +9,49 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar,
+  ToolbarAndroid
 } from 'react-native';
 import TabbedViewPager from 'react-native-tabbed-view-pager-android'
 export default class Example extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      tabNames: ['Beverages', 'Breakfast Cereals', 'Confectionary', 'Cooking Medium',
+       'Dairy Products', 'Dessert', 'Health Care', 'Herbs', 'Ready To Cook', 'Ready To Eat', 'Snacks', 'Staples']
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor={"#006E60"} />
+        <ToolbarAndroid style={styles.toolbar} titleColor={'white'} title='TabbedViewPager'/>
         <TabbedViewPager
           tabMode={"scrollable"}
           tabGravity={"center"}
-          tabBackground={"red"}
-          tabIndicatorColor={"blue"}
+          tabBackground={"#008B7D"}
+          tabIndicatorColor={"#FFB90B"}
           tabIndicatorHeight={4}
-          tabTextColor={"yellow"}
-          tabSelectedTextColor={"white"}
+          tabTextColor={"#ffffffa0"}
+          tabSelectedTextColor={"#ffffff"}
           tabElevation={4}
-          tabNames={["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth"]}
+          tabNames={this.state.tabNames}
           style={styles.viewPager}
           initialPage={0}
           onPageSelected={(event) => this.onPageSelected(event.nativeEvent.position)}
           onPageScrollStateChanged={(state) => this.onPageScrollStateChanged(state)}
           onPageScroll={(event) => this.onPageScroll(event.nativeEvent)}>
-          <View style={styles.pageStyle}>
-            <Text>First page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Second page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Third Page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Fourth page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Fifth page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Sixth page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Seventh page</Text>
-          </View>
-          <View style={styles.pageStyle}>
-            <Text>Eigth page</Text>
-          </View>
+          {
+            this.state.tabNames.map((tabName) => {
+              return(
+                <View style={styles.pageStyle} key={tabName}>
+                  <Text>{tabName}</Text>
+                </View>
+              )
+            })
+          }
         </TabbedViewPager>
       </View>
     );
@@ -85,7 +82,11 @@ const styles = StyleSheet.create({
   viewPager: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-  }
+  },
+  toolbar: {
+    backgroundColor: '#008B7D',
+    height: 56,
+  },
 });
 
 AppRegistry.registerComponent('Example', () => Example);
