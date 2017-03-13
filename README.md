@@ -1,5 +1,6 @@
 
 # react-native-tabbed-view-pager-android
+![alt tag](https://github.com/madhu314/react-native-tabbed-view-pager-android/blob/master/assets/tabbedviewpager.gif)
 ## Getting started
 
 `$ npm install react-native-tabbed-view-pager-android --save`
