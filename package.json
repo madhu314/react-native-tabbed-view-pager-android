@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-tabbed-view-pager-android",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An android ViewPager wrapper with built-in tabs.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,30 @@
   "peerDependencies": {
     "react-native": "0.42.0",
     "react-native-windows": "0.42.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madhu314/react-native-tabbed-view-pager-android.git"
+  },
+  "keywords": [
+    "react-native-component",
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "viewpager",
+    "pager",
+    "pageview",
+    "page",
+    "tab-navigator",
+    "scrollable",
+    "tab",
+    "navigator",
+    "tab-bar",
+    "tab-view"
+  ],
+  "bugs": {
+    "url": "https://github.com/madhu314/react-native-tabbed-view-pager-android/issues"
+  },
+  "homepage": "https://github.com/madhu314/react-native-tabbed-view-pager-android#README"
 }
