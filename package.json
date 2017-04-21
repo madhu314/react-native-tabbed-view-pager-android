@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-tabbed-view-pager-android",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An android ViewPager wrapper with built-in tabs.",
   "main": "index.js",
   "scripts": {
