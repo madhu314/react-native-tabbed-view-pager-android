@@ -18,8 +18,8 @@ Not Supported.
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import is.uncommon.rn.widgets.RNTabbedViewPagerAndroidPackage;` to the imports at the top of the file
-  - Add `new RNTabbedViewPagerAndroidPackage()` to the list returned by the `getPackages()` method
+  - Add `import is.uncommon.rn.widgets.TabbedViewPagerAndroidPackage;` to the imports at the top of the file
+  - Add `new TabbedViewPagerAndroidPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
   	include ':react-native-tabbed-view-pager-android'
