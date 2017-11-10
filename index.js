@@ -9,7 +9,10 @@ import {
   processColor
 } from 'react-native';
 
-var ReactPropTypes = React.PropTypes;
+import PropTypes from "prop-types";
+
+const ReactPropTypes = PropTypes;
+
 
 var VIEWPAGER_REF = 'viewPager';
 
