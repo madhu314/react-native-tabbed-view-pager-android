@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   UIManager,
   View,
@@ -7,18 +8,18 @@ import {
   findNodeHandle,
   ColorPropType,
   processColor
-} from 'react-native';
+} from "react-native";
 
-var ReactPropTypes = React.PropTypes;
+var ReactPropTypes = PropTypes;
 
-var VIEWPAGER_REF = 'viewPager';
+var VIEWPAGER_REF = "viewPager";
 
 type Event = Object;
 
 export type ViewPagerScrollState = $Enum<{
   idle: string,
   dragging: string,
-  settling: string,
+  settling: string
 }>;
 
 /**
@@ -66,8 +67,8 @@ class TabbedViewPager extends React.Component {
     onPageScrollStateChanged?: Function,
     onPageSelected?: Function,
     pageMargin?: number,
-    keyboardDismissMode?: 'none' | 'on-drag',
-    scrollEnabled?: boolean,
+    keyboardDismissMode?: "none" | "on-drag",
+    scrollEnabled?: boolean
   };
 
   static propTypes = {
@@ -119,21 +120,21 @@ class TabbedViewPager extends React.Component {
      *   - 'on-drag', the keyboard is dismissed when a drag begins.
      */
     keyboardDismissMode: ReactPropTypes.oneOf([
-      'none', // default
-      'on-drag',
+      "none", // default
+      "on-drag"
     ]),
 
     /**
-    * When false, the content does not scroll.
-    * The default value is true.
-    */
+     * When false, the content does not scroll.
+     * The default value is true.
+     */
     scrollEnabled: ReactPropTypes.bool,
 
     /**
-    * Tab properties
-    */
-    tabGravity: ReactPropTypes.oneOf(['fill', 'center']),
-    tabMode: ReactPropTypes.oneOf(['fixed', 'scrollable']),
+     * Tab properties
+     */
+    tabGravity: ReactPropTypes.oneOf(["fill", "center"]),
+    tabMode: ReactPropTypes.oneOf(["fixed", "scrollable"]),
     tabBackground: ColorPropType,
     tabIndicatorColor: ColorPropType,
     tabTextColor: ColorPropType,
@@ -163,22 +164,29 @@ class TabbedViewPager extends React.Component {
       }
       var newProps = {
         ...child.props,
-        style: [child.props.style, {
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: undefined,
-          height: undefined,
-        }],
-        collapsable: false,
+        style: [
+          child.props.style,
+          {
+            position: "absolute",
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: undefined,
+            height: undefined
+          }
+        ],
+        collapsable: false
       };
-      if (child.type &&
-          child.type.displayName &&
-          (child.type.displayName !== 'RCTView') &&
-          (child.type.displayName !== 'View')) {
-        console.warn('Each ViewPager child must be a <View>. Was ' + child.type.displayName);
+      if (
+        child.type &&
+        child.type.displayName &&
+        child.type.displayName !== "RCTView" &&
+        child.type.displayName !== "View"
+      ) {
+        console.warn(
+          "Each ViewPager child must be a <View>. Was " + child.type.displayName
+        );
       }
       return React.createElement(child.type, newProps);
     });
@@ -188,7 +196,7 @@ class TabbedViewPager extends React.Component {
     if (this.props.onPageScroll) {
       this.props.onPageScroll(e);
     }
-    if (this.props.keyboardDismissMode === 'on-drag') {
+    if (this.props.keyboardDismissMode === "on-drag") {
       dismissKeyboard();
     }
   };
@@ -213,7 +221,7 @@ class TabbedViewPager extends React.Component {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(this),
       UIManager.TabbedViewPager.Commands.setPage,
-      [selectedPage],
+      [selectedPage]
     );
   };
 
@@ -225,7 +233,7 @@ class TabbedViewPager extends React.Component {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(this),
       UIManager.TabbedViewPager.Commands.setPageWithoutAnimation,
-      [selectedPage],
+      [selectedPage]
     );
   };
 
@@ -248,6 +256,9 @@ class TabbedViewPager extends React.Component {
   }
 }
 
-var NativeTabbedViewPager = requireNativeComponent('TabbedViewPager', TabbedViewPager);
+var NativeTabbedViewPager = requireNativeComponent(
+  "TabbedViewPager",
+  TabbedViewPager
+);
 var TabbedViewPagerAndroid = TabbedViewPager;
 module.exports = TabbedViewPagerAndroid;
