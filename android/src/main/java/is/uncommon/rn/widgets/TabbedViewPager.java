@@ -44,21 +44,18 @@ public class TabbedViewPager extends LinearLayout {
 		for(int i=0; i<tabCount; i++){		
 		
         tabView = (ViewGroup)tabStrip.getChildAt(i);
-        tabChildCount = tabView.getChildCount();
-		
+        tabChildCount = tabView.getChildCount();		
 		
         for(int j=0; j<tabChildCount; j++){			
            tabViewChild = (((LinearLayout)((LinearLayout)tabView).getChildAt(j)).getChildAt(1));			
-            if(tabViewChild instanceof TextView){  
+            if(tabViewChild instanceof TextView){
+			if(this.fontName != null) {				
 			if (fontFace == null) {			
                 fontFace = Typeface.createFromAsset(getContext().getApplicationContext().getAssets(), "fonts/" + this.fontName); 
-			}
-					if(this.fontName != null) {
+			}				
                 ((TextView) tabViewChild).setTypeface(fontFace);
 					}
-				((TextView) tabViewChild).setAllCaps(this.upperCase);				
-				
-				
+		((TextView) tabViewChild).setAllCaps(this.upperCase);
             }
         }
 		
