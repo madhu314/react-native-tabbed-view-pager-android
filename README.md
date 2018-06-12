@@ -49,6 +49,8 @@ import TabbedViewPager from 'react-native-tabbed-view-pager-android';
       tabNames={this.state.tabNames}
       style={styles.viewPager}
       initialPage={0}
+      fontName={"Rubik-Regular.ttf"} //the font file should be placed in android/app/src/main/assets/fonts folder
+      textUpperCase={false}
       onPageSelected={(event) => this.onPageSelected(event.nativeEvent.position)}
       onPageScrollStateChanged={(state) => this.onPageScrollStateChanged(state)}
       onPageScroll={(event) => this.onPageScroll(event.nativeEvent)}>
@@ -75,6 +77,8 @@ tabIndicatorHeight | number | App theme| Yes. | Selected tab indicator height. S
 tabTextColor | string | App theme | Yes. |  Color of the text in the normal/unselected tab. Specify in [CSS color format](https://facebook.github.io/react-native/docs/colors.html).
 tabSelectedTextColor | string | App theme | Yes. |  Color of the text in the selected tab. Specify in [CSS color format](https://facebook.github.io/react-native/docs/colors.html).
 tabElevation | number | 0 | Yes. |  Elevation of the tab layout. Default value is 0.
+fontName  | string  | null  | Yes | Custom font name for tabs.
+textUpperCase | boolean | true  | Yes | Lower/Upper case tab names.
 tabNames | array | None | No. |  A string array of tab names. Non optional prop. Should indicate names in the same order as views of view pager children.
 
 Look at `Example` included with this sample for further details.
