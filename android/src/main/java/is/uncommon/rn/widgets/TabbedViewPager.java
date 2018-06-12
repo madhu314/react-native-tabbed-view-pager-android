@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.facebook.react.bridge.ReactContext;
-
+import android.graphics.Typeface;
+import android.widget.TextView;
+import android.content.res.AssetManager;
 /**
  * Created by madhu on 08/03/17.
  */
@@ -19,22 +21,67 @@ import com.facebook.react.bridge.ReactContext;
 public class TabbedViewPager extends LinearLayout {
   private ReactViewPager reactViewPager = null;
   private TabLayout tabLayout = null;
+  private String fontName =  null;
+  private boolean upperCase = true;
+  
 
   public TabbedViewPager(Context context) {
-    super(context);
+    super(context);	
   }
+  /*Updated by Ashok*/
+  @Override
+  protected void onLayout(boolean changed, int l, int t, int r, int b) {
+	 
+		super.onLayout(changed,l,t,r,b);		
+		final ViewGroup tabStrip = (ViewGroup)getChildAt(0);
+		final int tabCount = tabStrip.getChildCount();
+		ViewGroup tabView;
+		int tabChildCount;
+		View tabViewChild;
+		Typeface fontFace = null;
+		
+				
+		for(int i=0; i<tabCount; i++){		
+		
+        tabView = (ViewGroup)tabStrip.getChildAt(i);
+        tabChildCount = tabView.getChildCount();
+		
+		
+        for(int j=0; j<tabChildCount; j++){			
+           tabViewChild = (((LinearLayout)((LinearLayout)tabView).getChildAt(j)).getChildAt(1));			
+            if(tabViewChild instanceof TextView){  
+			if (fontFace == null) {			
+                fontFace = Typeface.createFromAsset(getContext().getApplicationContext().getAssets(), "fonts/" + this.fontName); 
+			}
+					if(this.fontName != null) {
+                ((TextView) tabViewChild).setTypeface(fontFace);
+					}
+				((TextView) tabViewChild).setAllCaps(this.upperCase);				
+				
+				
+            }
+        }
+		
+		tabView.measure(
+        View.MeasureSpec.makeMeasureSpec(tabView.getMeasuredWidth(), View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(tabView.getMeasuredHeight(), View.MeasureSpec.EXACTLY));
+		tabView.layout(tabView.getLeft(), tabView.getTop(), tabView.getRight(), tabView.getBottom());
+    }	
+  }
+  
+  /*Updated by Ashok*/
 
   public TabbedViewPager(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
   public TabbedViewPager(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+    super(context, attrs, R.style.tab_text);
   }
 
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   public TabbedViewPager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
+    super(context, attrs, defStyleAttr, R.style.tab_text);
   }
 
   void setup(ReactContext reactContext) {
@@ -47,15 +94,17 @@ public class TabbedViewPager extends LinearLayout {
     });
     this.tabLayout = new TabLayout(reactContext);
     this.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+	
     LayoutParams viewPagerParams =
         new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
             1);
 
     LayoutParams tabParams =
-        new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     this.addView(tabLayout, tabParams);
     this.addView(reactViewPager, viewPagerParams);
     tabLayout.setupWithViewPager(reactViewPager);
+	
   }
 
   public void handleViewDropped() {
@@ -127,7 +176,7 @@ public class TabbedViewPager extends LinearLayout {
   public void setTabTextColor(int tabTextColor) {
     ColorStateList stateList = tabLayout.getTabTextColors();
     int selectedColor = stateList.getColorForState(SELECTED_STATE_SET, tabTextColor);
-    tabLayout.setTabTextColors(tabTextColor, selectedColor);
+    tabLayout.setTabTextColors(tabTextColor, selectedColor);	
   }
 
   public void setTabNames(String[] names) {
@@ -137,4 +186,14 @@ public class TabbedViewPager extends LinearLayout {
   public void setTabElevation(float elevation) {
     ViewCompat.setElevation(tabLayout, elevation);
   }
+  
+  public void setFontName(String value) {
+    this.fontName = value;
+  }
+  
+  public void setTextUpperCase(boolean value) {
+    this.upperCase = value;
+  }
+  
+  
 }
