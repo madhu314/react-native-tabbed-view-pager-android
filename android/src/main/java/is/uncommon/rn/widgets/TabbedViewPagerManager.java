@@ -12,6 +12,9 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import java.util.Map;
 import javax.annotation.Nullable;
 
+import android.widget.Toast;
+import android.content.Context;
+
 /**
  * Created by madhu on 08/03/17.
  */
@@ -20,6 +23,7 @@ import javax.annotation.Nullable;
   protected static final String REACT_CLASS = "TabbedViewPager";
   public static final int COMMAND_SET_PAGE = 1;
   public static final int COMMAND_SET_PAGE_WITHOUT_ANIMATION = 2;
+  private Context context;
 
   public TabbedViewPagerManager() {
 
@@ -28,10 +32,13 @@ import javax.annotation.Nullable;
   @Override public String getName() {
     return REACT_CLASS;
   }
+  
+  
 
   @Override protected TabbedViewPager createViewInstance(ThemedReactContext reactContext) {
     TabbedViewPager viewPager = new TabbedViewPager(reactContext);
     viewPager.setup(reactContext);
+	this.context = reactContext;
     return viewPager;
   }
 
@@ -95,6 +102,17 @@ import javax.annotation.Nullable;
   @ReactProp(name = "scrollEnabled", defaultBoolean = true)
   public void setScrollEnabled(TabbedViewPager viewPager, boolean value) {
     viewPager.setScrollEnabled(value);
+  }
+  
+  
+  @ReactProp(name = "fontName")
+  public void setFontName(TabbedViewPager viewPager, String value) {
+    viewPager.setFontName(value);
+  }
+  
+  @ReactProp(name = "textUpperCase", defaultBoolean = true)
+  public void setTextUpperCase(TabbedViewPager viewPager, boolean value) {
+    viewPager.setTextUpperCase(value);
   }
 
   @Override public boolean needsCustomLayoutForChildren() {
