@@ -12,9 +12,6 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import java.util.Map;
 import javax.annotation.Nullable;
 
-import android.widget.Toast;
-import android.content.Context;
-
 /**
  * Created by madhu on 08/03/17.
  */
@@ -23,8 +20,7 @@ import android.content.Context;
   protected static final String REACT_CLASS = "TabbedViewPager";
   public static final int COMMAND_SET_PAGE = 1;
   public static final int COMMAND_SET_PAGE_WITHOUT_ANIMATION = 2;
-  private Context context;
-
+ 
   public TabbedViewPagerManager() {
 
   }
@@ -37,8 +33,7 @@ import android.content.Context;
 
   @Override protected TabbedViewPager createViewInstance(ThemedReactContext reactContext) {
     TabbedViewPager viewPager = new TabbedViewPager(reactContext);
-    viewPager.setup(reactContext);
-	this.context = reactContext;
+    viewPager.setup(reactContext);	
     return viewPager;
   }
 
