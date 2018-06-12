@@ -141,7 +141,9 @@ class TabbedViewPager extends React.Component {
     tabSelectedTextColor: ColorPropType,
     tabIndicatorHeight: ReactPropTypes.number,
     tabElevation: ReactPropTypes.number,
-    tabNames: ReactPropTypes.array.isRequired
+    tabNames: ReactPropTypes.array.isRequired,
+	fontName: ReactPropTypes.string,
+	textUpperCase: ReactPropTypes.bool
   };
 
   componentDidMount() {
