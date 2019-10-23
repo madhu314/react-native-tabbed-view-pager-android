@@ -149,6 +149,10 @@ import javax.annotation.Nullable;
     parent.removeViewFromAdapter(index);
   }
 
+  @Override public void removeAllViews(TabbedViewPager parent) {
+    parent.removeAllViewsFromAdapter();
+  }
+
   @ReactProp(name = "pageMargin", defaultFloat = 0)
   public void setPageMargin(TabbedViewPager pager, float margin) {
     pager.setPageMargin((int) PixelUtil.toPixelFromDIP(margin));
