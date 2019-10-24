@@ -86,6 +86,10 @@ public class TabbedViewPager extends LinearLayout {
     this.reactViewPager.removeViewFromAdapter(index);
   }
 
+  public void removeAllViewsFromAdapter() {
+    this.reactViewPager.removeAllViewsFromAdapter();
+  }
+
   public void setPageMargin(int i) {
     this.reactViewPager.setPageMargin(i);
   }
