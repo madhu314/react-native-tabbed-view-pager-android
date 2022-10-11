@@ -9,7 +9,7 @@
   "dependencies": {
     "prop-types": "15.5.10",
     "react": "16.0.0",
-    "react-native": "0.50.3",
+    "react-native": "0.70.2",
     "react-native-tabbed-view-pager-android": "file:../"
   },
   "devDependencies": {
